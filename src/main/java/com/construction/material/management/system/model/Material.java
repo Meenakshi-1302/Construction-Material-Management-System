@@ -8,9 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +32,9 @@ public class Material {
 
     @Column(name = "unit_price", nullable = false)
     private double unitPrice;
+    
+    @Column(name="Quantity")
+    private int quantity;
 
     @Column(name = "date_of_last_purchase")
     private LocalDate dateOfLastPurchase;
@@ -42,12 +43,10 @@ public class Material {
     private LocalDate expirationDate;
     
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
+    @Column(columnDefinition = "LONGBLOB",length = 100000000)
     private byte[] picture;
     
-    @ManyToOne
-    @JoinColumn(name="inventoryId")
-    private Inventory inventory;
+    
 
 	public Material() {
 		super();
@@ -55,8 +54,8 @@ public class Material {
 	}
 
 	public Material(int materialId, String materialName, String category, String description,
-			String unitOfMeasure, Double unitPrice, LocalDate dateOfLastPurchase, LocalDate expirationDate,
-			Inventory inventory, byte[] picture) {
+			String unitOfMeasure, Double unitPrice,int quantity, LocalDate dateOfLastPurchase, LocalDate expirationDate,
+			 byte[] picture) {
 		super();
 		
 		this.materialId = materialId;
@@ -65,9 +64,9 @@ public class Material {
 		this.description = description;
 		this.unitOfMeasure = unitOfMeasure;
 		this.unitPrice = unitPrice;
+		this.quantity = quantity;
 		this.dateOfLastPurchase = dateOfLastPurchase;
 		this.expirationDate = expirationDate;
-		this.inventory = inventory;
 		this.picture = picture;
 	}
 
@@ -111,12 +110,20 @@ public class Material {
 		this.unitOfMeasure = unitOfMeasure;
 	}
 
-	public Double getUnitPrice() {
+	public double getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(Double unitPrice) {
+	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public LocalDate getDateOfLastPurchase() {
@@ -135,14 +142,6 @@ public class Material {
 		this.expirationDate = expirationDate;
 	}
 
-	public Inventory getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
-	}
-
 	public byte[] getPicture() {
 		return picture;
 	}
@@ -150,6 +149,7 @@ public class Material {
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
+
 	
 
     

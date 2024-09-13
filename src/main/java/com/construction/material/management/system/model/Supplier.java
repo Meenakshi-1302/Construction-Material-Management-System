@@ -35,6 +35,9 @@ public class Supplier {
 	@Column(name="Contact Number")
 	private String contactNumber;
 	
+	@Column(name="Password")
+	private String password;
+	
 	@ManyToOne
 	@JoinColumn(name="MaterialId")
 	private Material material;
@@ -45,7 +48,7 @@ public class Supplier {
 	}
 
 	public Supplier(long supplierId, String supplierName, String materialQuality, String location,
-			String estimatedDeliveryDate, String email, String contactNumber, Material material) {
+			String estimatedDeliveryDate, String email, String contactNumber,String password, Material material) {
 		super();
 		this.supplierId = supplierId;
 		this.supplierName = supplierName;
@@ -54,7 +57,16 @@ public class Supplier {
 		this.estimatedDeliveryDate = estimatedDeliveryDate;
 		this.email = email;
 		this.contactNumber = contactNumber;
+		this.password = password;
 		this.material = material;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public long getSupplierId() {
