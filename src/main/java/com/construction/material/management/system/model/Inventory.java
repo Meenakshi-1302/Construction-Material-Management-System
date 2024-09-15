@@ -4,8 +4,6 @@ package com.construction.material.management.system.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,11 +20,11 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long inventoryId;
 
-    @Column(name = "reorder_level", nullable = false)
-    private Integer reorderLevel;
+    @Column(name = "reorder_level")
+    private int reorderLevel;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    @Column
+    private String status;
 
     @Column(name = "batch_number_or_serial_number")
     private String batchNumberOrSerialNumber;
@@ -42,7 +40,7 @@ public class Inventory {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Inventory(Long inventoryId, Integer reorderLevel, Status status, String batchNumberOrSerialNumber,
+	public Inventory(Long inventoryId, int reorderLevel, String status, String batchNumberOrSerialNumber,
 			Material material) {
 		super();
 		this.inventoryId = inventoryId;
@@ -60,19 +58,19 @@ public class Inventory {
 		this.inventoryId = inventoryId;
 	}
 
-	public Integer getReorderLevel() {
+	public int getReorderLevel() {
 		return reorderLevel;
 	}
 
-	public void setReorderLevel(Integer reorderLevel) {
+	public void setReorderLevel(int reorderLevel) {
 		this.reorderLevel = reorderLevel;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -92,11 +90,6 @@ public class Inventory {
 		this.material = material;
 	}
 
-	public enum Status {
-	        AVAILABLE,
-	        OUT_OF_STOCK,
-	        DISCONTINUED
-	    }
 	
     
 	

@@ -38,6 +38,7 @@ public class MaterialController {
 		try {
 			byte[] pictureBytes = picture.getBytes();
 			
+			
 			Material material = new Material();
 			material.setMaterialName(materialName);
 			material.setCategory(category);

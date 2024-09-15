@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.construction.material.management.system.model.AdministrativeUser;
 import com.construction.material.management.system.model.Login;
+import com.construction.material.management.system.model.Supplier;
 import com.construction.material.management.system.model.User;
 import com.construction.material.management.system.service.AdministrativeUserService;
+import com.construction.material.management.system.service.SupplierService;
 import com.construction.material.management.system.service.UserService;
 
 
@@ -26,6 +28,9 @@ public class LoginController {
 	
 	@Autowired
 	private AdministrativeUserService administrativeUserService;
+	
+	@Autowired
+	private SupplierService supplierservice; 
 	
 	@PostMapping
 	public Object login(@RequestBody Login login) {
@@ -45,6 +50,13 @@ public class LoginController {
         for(User user : users) {
         	if(user.getEmail().equals(email) && user.getPassword().equals(password)) {
         		return user;
+        	}
+        }
+        
+        List<Supplier> suppliers = supplierservice.findAllSuppliers();
+        for(Supplier supplier : suppliers) {
+        	if(supplier.getEmail().equals(email) && supplier.getPassword().equals(password)) {
+        		return supplier;
         	}
         }
         

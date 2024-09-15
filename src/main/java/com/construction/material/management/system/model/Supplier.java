@@ -41,6 +41,8 @@ public class Supplier {
 	@ManyToOne
 	@JoinColumn(name="MaterialId")
 	private Material material;
+	
+	private String role="supplier";
 
 	public Supplier() {
 		super();
@@ -48,7 +50,7 @@ public class Supplier {
 	}
 
 	public Supplier(long supplierId, String supplierName, String materialQuality, String location,
-			String estimatedDeliveryDate, String email, String contactNumber,String password, Material material) {
+			String estimatedDeliveryDate, String email, String contactNumber,String password, Material material, String role) {
 		super();
 		this.supplierId = supplierId;
 		this.supplierName = supplierName;
@@ -59,6 +61,16 @@ public class Supplier {
 		this.contactNumber = contactNumber;
 		this.password = password;
 		this.material = material;
+		this.role = role;
+	}
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getPassword() {

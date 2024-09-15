@@ -22,7 +22,7 @@ public class FormRequest {
 	private Supplier supplier;
 	
 	@Column(name="Unit")
-	private int unit;
+	private int unitInOrder;
 	
 	@Column(name="total amount")
 	private double totalAmount;
@@ -35,11 +35,11 @@ public class FormRequest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FormRequest(long requestId, Supplier supplier, int unit, double totalAmount, String address) {
+	public FormRequest(long requestId, Supplier supplier, int unitInOrder, double totalAmount, String address) {
 		super();
 		this.requestId = requestId;
 		this.supplier = supplier;
-		this.unit = unit;
+		this.unitInOrder = unitInOrder;
 		this.totalAmount = totalAmount;
 		Address = address;
 	}
@@ -60,12 +60,12 @@ public class FormRequest {
 		this.supplier = supplier;
 	}
 
-	public int getUnit() {
-		return unit;
+	public int getUnitInOrder() {
+		return unitInOrder;
 	}
 
-	public void setUnit(int unit) {
-		this.unit = unit;
+	public void setUnitInOrder(int unitInOrder) {
+		this.unitInOrder = unitInOrder;
 	}
 
 	public double getTotalAmount() {
