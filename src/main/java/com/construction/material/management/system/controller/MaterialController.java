@@ -61,20 +61,11 @@ public class MaterialController {
 	}
 	
 	@PutMapping("/edit")
-	public Material updateMaterial(@RequestParam("materialId") int materialId, @RequestParam("materialName") String materialName,@RequestParam("category") String category,
-			@RequestParam("description") String description, @RequestParam("unitOfMeasure") String unitOfMeasure, 
-			@RequestParam("unitPrice") double unitPrice,@RequestParam("quantity") int quantity,
-			@RequestParam("dateOfPurchase") LocalDate dateOfLastPurchase,@RequestParam("expirationDate") LocalDate expirationDate, 
-			@RequestParam(value="picture", required=false) MultipartFile picture) {
-		try {
-			byte[] pictureBytes = picture !=null? picture.getBytes():null;
-			
-			Material material = new Material(materialId, materialName, category,description,unitOfMeasure,unitPrice,quantity,dateOfLastPurchase,expirationDate,pictureBytes);
-			materialserviceimpl.updateMaterial(material);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+	public Material updateMaterial(@RequestParam("materialId") int materialId, @RequestParam("quantity") int quantity) {
+		Material material = materialserviceimpl.findMaterialById(materialId);
+		material.setQuantity(quantity);
+		materialserviceimpl.updateMaterial(material);
+		return material;
 	
 	}
 	
